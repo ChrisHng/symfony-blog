@@ -4,6 +4,7 @@ namespace BlogBundle\Controller;
 
 use BlogBundle\Entity\Article;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 class ArticleController extends Controller {
 
@@ -14,6 +15,12 @@ class ArticleController extends Controller {
 
         return $this->render('BlogBundle:Article:articleList.html.twig', [
             'articles' => $articles
+        ]);
+    }
+
+    public function detailAction(Article $article) {
+        return $this->render('BlogBundle:Article:articleDetail.html.twig', [
+            'article' => $article
         ]);
     }
 }
