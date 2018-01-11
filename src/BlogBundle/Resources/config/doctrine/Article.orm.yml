@@ -1,0 +1,39 @@
+BlogBundle\Entity\Article:
+    type: entity
+    table: null
+    repositoryClass: BlogBundle\Repository\ArticleRepository
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        title:
+            type: string
+            length: 255
+            nullable: true
+        content:
+            type: text
+        image:
+            type: string
+            length: 255
+            nullable: true
+        createdAt:
+            type: datetime
+            nullable: true
+        updatedAt:
+            type: datetime
+            nullable: true
+    manyToOne:
+      category:
+          targetEntity: BlogBundle\Entity\ArticleCategory
+          inversedBy: articles
+          joinColumn:
+              name: category_id
+              referencedColumnName: id
+
+
+    lifecycleCallbacks:
+        prePersist: [setCreatedAtValue, setUpdatedAtValue]
+        preUpdate: [setUpdatedAtValue]

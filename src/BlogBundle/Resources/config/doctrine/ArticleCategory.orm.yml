@@ -1,0 +1,27 @@
+BlogBundle\Entity\ArticleCategory:
+    type: entity
+    table: null
+    repositoryClass: BlogBundle\Repository\ArticleCategoryRepository
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        name:
+            type: string
+            length: 255
+        createdAt:
+            type: datetime
+            column: created_at
+            nullable: true
+        updatedAt:
+            type: datetime
+            column: updated_at
+            nullable: true
+    oneToMany:
+        articles:
+            targetEntity: BlogBundle\Entity\Article
+            mappedBy: category
+    lifecycleCallbacks: {  }
